@@ -1,0 +1,27 @@
+##fileformat=VCFv4.2
+##contig=<ID=1,length=249250621>
+##contig=<ID=2,length=242193529>
+##contig=<ID=3,length=198295559>
+##contig=<ID=7,length=159138663>
+##contig=<ID=9,length=141213431>
+##contig=<ID=12,length=133851895>
+##contig=<ID=17,length=81195210>
+##INFO=<ID=TLOD,Number=1,Type=Float,Description="Tumor LOD score">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total read depth">
+##INFO=<ID=POPAF,Number=1,Type=Float,Description="Population allele frequency (-log10 scale)">
+##INFO=<ID=GERMQ,Number=1,Type=Integer,Description="Phred-scaled germline confidence">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele frequency in tumor">
+##INFO=<ID=CONTQ,Number=A,Type=Integer,Description="Contamination quality score">
+##INFO=<ID=SEQQ,Number=A,Type=Integer,Description="Sequencing quality score">
+##INFO=<ID=MPOS,Number=A,Type=Integer,Description="Median position in reads">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+12	25398284	rs121913529	C	T	60	.	TLOD=45.8;DP=120;POPAF=6.2;GERMQ=42;AF=0.15;CONTQ=35;SEQQ=38;MPOS=18
+17	7674220	rs28934574	C	A	60	.	TLOD=52.1;DP=95;POPAF=5.8;GERMQ=38;AF=0.22;CONTQ=28;SEQQ=33;MPOS=15
+3	178952085	rs1801131	G	A	60	.	TLOD=8.2;DP=25;POPAF=1.2;GERMQ=12;AF=0.45;CONTQ=8;SEQQ=9;MPOS=3
+1	115256529	rs2230054	G	T	60	.	TLOD=15.5;DP=35;POPAF=4.1;GERMQ=28;AF=0.08;CONTQ=15;SEQQ=12;MPOS=6
+7	140753336	rs113488022	A	T	60	.	TLOD=38.9;DP=85;POPAF=7.1;GERMQ=45;AF=0.18;CONTQ=32;SEQQ=35;MPOS=16
+2	212578379	.	C	G	60	.	TLOD=2.1;DP=8;POPAF=2.8;GERMQ=5;AF=0.02;CONTQ=3;SEQQ=4;MPOS=1
+9	21971120	rs1333049	T	A	60	.	TLOD=28.4;DP=78;POPAF=4.5;GERMQ=35;AF=0.12;CONTQ=25;SEQQ=28;MPOS=14
+1	27106525	rs1234567	G	C	60	.	TLOD=18.7;DP=45;POPAF=0.8;GERMQ=8;AF=0.48;CONTQ=12;SEQQ=15;MPOS=11
+17	43044295	rs80357382	G	A	60	.	TLOD=41.2;DP=105;POPAF=5.9;GERMQ=40;AF=0.19;CONTQ=30;SEQQ=36;MPOS=17
+12	25398285	rs121913530	G	A	60	.	TLOD=22.3;DP=65;POPAF=6.8;GERMQ=33;AF=0.09;CONTQ=22;SEQQ=25;MPOS=13

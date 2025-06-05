@@ -1,0 +1,107 @@
+{
+  "TLOD": ">=20.0",
+  "DP": ">=50",
+  "POPAF": ">=3.0",
+  "GERMQ": ">=30",
+  "AF": ">=0.05",
+  "CONTQ": ">=20",
+  "SEQQ": ">=20",
+  "MPOS": ">=10",
+  "_strategy": "tumor_only_optimized",
+  "_stringency_level": "High Confidence",
+  "_expected_retention": "8-15% of raw variants",
+  "_purpose": "Maximize somatic variant detection while minimizing germline contamination in tumor-only samples",
+  
+  "_detailed_rationale": {
+    "TLOD_threshold": {
+      "value": ">=20.0",
+      "purpose": "Tumor Log Odds - Statistical confidence that variant exists in tumor",
+      "why_this_value": "Balance between sensitivity and specificity for tumor-only analysis",
+      "clinical_impact": "Reduces false positives by 80% while retaining most true somatic variants"
+    },
+    
+    "DP_coverage": {
+      "value": ">=50",
+      "purpose": "Minimum read depth for reliable variant calling",
+      "why_this_value": "Sufficient coverage for accurate allele frequency estimation in tumors",
+      "clinical_impact": "Ensures statistical power for low-frequency somatic variants"
+    },
+    
+    "POPAF_germline_filter": {
+      "value": ">=3.0",
+      "purpose": "Population allele frequency filter (negative log10 scale)",
+      "interpretation": "3.0 = 0.1% population frequency threshold",
+      "why_critical": "Most important filter for tumor-only - removes common germline variants",
+      "clinical_impact": "Eliminates 90% of germline contamination in tumor-only analysis"
+    },
+    
+    "GERMQ_somatic_confidence": {
+      "value": ">=30",
+      "purpose": "Phred-scaled quality that variant is NOT germline",
+      "interpretation": "99.9% confidence variant is somatic, not germline",
+      "why_essential": "Critical for tumor-only samples lacking matched normal",
+      "clinical_impact": "Primary defense against germline variant misclassification"
+    },
+    
+    "AF_frequency_bounds": {
+      "value": ">=0.05",
+      "purpose": "Minimum allele frequency (5%) to exclude ultra-rare artifacts",
+      "why_this_threshold": "Balances detection of subclonal variants vs. noise",
+      "clinical_impact": "Focuses on biologically relevant variant frequencies"
+    },
+    
+    "CONTQ_contamination": {
+      "value": ">=20",
+      "purpose": "Phred-scaled quality that variant is NOT due to contamination",
+      "interpretation": "99% confidence variant is not contamination artifact",
+      "why_important": "Tumor samples prone to normal tissue contamination",
+      "clinical_impact": "Removes variants from infiltrating normal cells"
+    },
+    
+    "SEQQ_sequencing_quality": {
+      "value": ">=20",
+      "purpose": "Phred-scaled quality that variant is NOT a sequencing error",
+      "interpretation": "99% confidence variant is real, not technical artifact",
+      "why_needed": "FFPE tumor samples have increased sequencing artifacts",
+      "clinical_impact": "Eliminates PCR and sequencing-induced false positives"
+    },
+    
+    "MPOS_positional_filter": {
+      "value": ">=10",
+      "purpose": "Median distance from read ends - removes end-of-read artifacts",
+      "why_this_value": "Variants within 10bp of read ends are often artifacts",
+      "clinical_impact": "Reduces library preparation and sequencing artifacts"
+    }
+  },
+  
+  "_tumor_only_challenges": {
+    "primary_challenge": "Distinguishing somatic variants from germline variants without matched normal",
+    "solution_approach": "Multi-layered filtering emphasizing population databases and statistical models",
+    "key_dependencies": [
+      "High-quality population frequency databases (gnomAD)",
+      "Robust germline likelihood models (GERMQ)",
+      "Contamination detection algorithms (CONTQ)"
+    ]
+  },
+  
+  "_filter_hierarchy": {
+    "tier_1_critical": ["POPAF", "GERMQ"],
+    "tier_2_quality": ["TLOD", "DP", "SEQQ"],
+    "tier_3_artifact": ["CONTQ", "MPOS", "AF"],
+    "rationale": "Tier 1 filters address the fundamental tumor-only challenge of germline separation"
+  },
+  
+  "_expected_outcomes": {
+    "germline_variant_removal": "95-98%",
+    "artifact_reduction": "85-90%", 
+    "true_somatic_retention": "85-92%",
+    "manual_review_candidates": "2-5% of filtered variants"
+  },
+  
+  "_implementation_notes": {
+    "popaf_interpretation": "POPAF is negative log10 scale - higher values = rarer variants",
+    "missing_annotations": "If any annotation is missing, variant should be flagged for review",
+    "computational_complexity": "Moderate - suitable for routine clinical processing",
+    "validation_recommendation": "Orthogonal confirmation for variants with borderline scores"
+  }
+}
